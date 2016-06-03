@@ -14,10 +14,10 @@ var board = new five.Board({
 
 board.on("ready", function() {
   var led = new five.Led("D7");
-  var motorL = new five.Motor({
+  var motorR = new five.Motor({
     pin: 'A4',
   });
-  var motorR = new five.Motor({
+  var motorL = new five.Motor({
     pin: 'A5',
   });
   var rudder = new five.Servo('D0');
@@ -32,3 +32,4 @@ board.on("ready", function() {
   });
 
 });
+

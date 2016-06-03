@@ -33,17 +33,11 @@
         return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     };
 
-    var socket = io.connect('http://localhost:8080');
+    var socket = io.connect('http://192.168.1.242:8080');
 
     socket.on('hello', function (data) {
         console.log(data);
-        var gamepad = {
-            index: 0,
-            id: 101,
-            buttons: [1]
-        };
-        // addgamepad(gamepad);
-//        socket.emit('my other event', {my: 'data'});
+        scangamepads()
     });
 
     //    Adapted from https://github.com/luser/gamepadtest
@@ -115,6 +109,7 @@
     }
 
     function updateStatus() {
+        console.log('update status called', controllers);
         if (!haveEvents) {
             scangamepads();
         }
@@ -187,7 +182,26 @@
     }
 
     setInterval(function() {
-        socket.emit('data', data);
+        var x,y;
+        if (window.joystick){
+            x = joystick.deltaX();
+            y = joystick.deltaY();
+            if (x > 200){x = 200;}
+            if (x < -200){x = -200;}
+            if (y > 200){y = 200;}
+            if (y < -200){y = -200;}
+            var data = {x: x/200, y: y/200};
+            socket.emit('data', data);
+        }
+
+
+
+
+
+
+
+
+        // socket.emit('data', data);
     }, 50);
 
 </script>
@@ -206,11 +220,11 @@
             works with mouse too as debug
             <br/>
             <span id="result"></span>
-        </div> 
+        </div>
         <script src="/vJoystick.js"></script>
         <script>
             console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
-    
+
             var joystick    = new VirtualJoystick({
                 container   : document.getElementById('container'),
                 mouseSupport    : true,
@@ -229,7 +243,7 @@
                     + (joystick.right() ? ' right'  : '')
                     + (joystick.up()    ? ' up'     : '')
                     + (joystick.left()  ? ' left'   : '')
-                    + (joystick.down()  ? ' down'   : '')   
+                    + (joystick.down()  ? ' down'   : '')
             }, 1/30 * 1000);
         </script>
 </body>

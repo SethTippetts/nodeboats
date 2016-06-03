@@ -6,6 +6,9 @@ var io = require('socket.io')(server);
 var dotenv = require('dotenv');
 var Boat = require('./boat');
 
+let x = 0;
+let y = 0;
+
 dotenv.config();
 
 var boat = new Boat();
@@ -29,7 +32,13 @@ io.on('connection', function (socket) {
 
   socket.on('data', function(data) {
     console.log('data', data);
-    boat.forward(data.speed || 0);
-    boat.turn(data.degree || 90);
+    if (!data.y) data.y = y;
+    else y = data.y;
+
+    if (!data.x) data.x = x;
+    else x = data.x;
+
+    boat.move(data.y || 0, data.x || 0);
+
   });
 });
