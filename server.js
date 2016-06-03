@@ -19,6 +19,10 @@ app.get('/gamepad', function (req, res) {
   res.sendfile(__dirname + '/gamepad.html');
 });
 
+app.get('/vJoystick.js', function (req, res) {
+  res.sendfile(__dirname + '/vJoystick.js');
+});
+
 
 io.on('connection', function (socket) {
   socket.emit('hello', { hello: 'world' });
