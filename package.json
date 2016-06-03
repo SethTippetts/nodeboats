@@ -1,17 +1,27 @@
 {
-  "name": "node-boats",
+  "name": "nodeboats",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
   },
-  "author": "Seth Tippetts <sethtippetts@gmail.com> (http://sethtippetts.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmdayley/nodeboats.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gmdayley/nodeboats/issues"
+  },
+  "homepage": "https://github.com/gmdayley/nodeboats#readme",
   "dependencies": {
     "dotenv": "^2.0.0",
-    "johnny-five": "^0.9.52",
-    "particle-cli": "^1.14.2",
-    "spark-io": "^0.6.1"
+    "express": "^4.13.4",
+    "johnny-five": "^0.9.51",
+    "particle-io": "^0.12.0",
+    "socket.io": "^1.4.6"
   }
 }

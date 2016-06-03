@@ -1,6 +1,7 @@
 var five = require("johnny-five");
 var Spark = require("spark-io");
 var dotenv = require('dotenv');
+var express = require('express');
 
 dotenv.config();
 
